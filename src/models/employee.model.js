@@ -11,6 +11,8 @@ var Employee = function(employee){
     this.designation    = employee.designation;
     this.salary         = employee.salary;
     this.status         = employee.status ? employee.status : 1;
+    this.user_name      = employee.user_name;
+    this.password       = employee.password;
     this.created_at     = new Date();
     this.updated_at     = new Date();
 };
@@ -50,7 +52,7 @@ Employee.findAll = function (result) {
     });   
 };
 Employee.update = function(id, employee, result){
-  dbConn.query("UPDATE employees SET first_name=?,last_name=?,email=?,phone=?,organization=?,designation=?,salary=? WHERE id = ?", [employee.first_name,employee.last_name,employee.email,employee.phone,employee.organization,employee.designation,employee.salary, id], function (err, res) {
+  dbConn.query("UPDATE employees SET first_name=?,last_name=?,email=?,phone=?,organization=?,designation=?,salary=?,user_name=?,password=? WHERE id = ?", [employee.first_name,employee.last_name,employee.email,employee.phone,employee.organization,employee.designation,employee.salary,employee.user_name,employee.password, id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
